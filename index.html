@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>mushroom classification</title>
+  <style>
+    h1
+    {
+    
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+
+   }
+    .label {
+      display: block; /* Change display to block to create a new line */
+      margin-bottom: 3px; /* Adjust this value as needed */
+      font-size: 25px;
+      
+    }
+    .margin
+    {
+        margin-bottom: 15px;
+    }
+    .submit
+    {
+        margin-left: 137px;
+        margin-top: 30px;   
+        font-size: 25px;
+    }
+    body {
+        background-image: url("C:\Users\pajag\OneDrive\Desktop\Mushroom Prediction\templetes\mushroom1.jpg"); /* Replace with the actual path to your image */
+        background-size: cover; /* Adjust as needed */
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+      }
+    input[type="submit"] {
+        font-size: 20px;
+      }
+  </style>
+</head>
+<body >
+    <h1>Mushroom Classification</h1>
+    
+
+  <form  action="predict" method="POST" >
+    <div class="margin">
+    <div style="display: flex;">
+        <div style="flex:0.3;">
+
+    </div>
+      <div style="flex: 1;">
+        
+        <label class="label" for="cap-shape" >Cap Shape :- </label>
+
+            <select id="cap-shape" name="cap-shape"  required>
+            <option value="5" >convex</option>
+            <option value="0">bell</option>
+            <option value="4">sunken</option>
+            <option value="2">flat</option>
+            <option value="3">knobbed</option>
+            <option value="1">conical</option>
+            </select> 
+      </div>
+      <div style="flex: 1;">
+            <label class="label" >Cap Surface</label>
+                <select name="cap-surface" id="cap-surface" required>
+                    <option value="2">smooth</option>
+                    <option value="3">scaly</option>
+                    <option value="1">grooves</option>
+                    <option value="0">fibrous</option>
+                </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Cap Color</label>
+            <select name="cap-color" id="cap-color" required>
+                <option value="4">brown</option>
+                <option value="0">buff</option>
+                <option value="1">cinnamon</option>
+                <option value="3">gray</option>
+                <option value="6">green</option>
+                <option value="5">pink</option>
+                <option value="7">purple</option>
+                <option value="2">red</option>
+                <option value="8">white</option>
+                <option value="9">yellow</option>
+            </select>
+      </div>
+    </div> <!--this is 1st row end-->
+</div>
+<div class="margin">
+    <div style="display: flex;">
+        <div style="flex:0.3;">
+
+        </div>
+      <div style="flex: 1;">
+        <label class="label">Bruises</label>
+            <select name="bruises" id="bruises">
+                <option value="1">bruises</option>
+                <option value="0">no</option>
+            </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Odor</label>
+            <select name="odor" id="odor" required>
+                <option value="0">almond</option>
+                <option value="3">anise</option>
+                <option value="1">creosote</option>
+                <option value="8">fishy</option>
+                <option value="2">foul</option>
+                <option value="4">musty</option>
+                <option value="6">pungent</option>
+                <option value="7">spicy</option>
+                <option value="5">none</option>
+
+            </select>
+       
+      </div>
+      <div style="flex: 1;">
+        <label class="label" >Gill Attachment</label>
+            <select name="gill-attachment" id="gill-attachment">
+                <option value="1">attached</option>
+                <option value="0">free</option>
+            </select>
+      </div>
+    </div>
+</div>
+<div class="margin">
+    <div style="display: flex;">
+        <div style="flex:0.3;">
+
+        </div>
+      <div style="flex: 1;">
+        <label class="label">Gill Spacing</label>
+            <select name="gill-spacing" id="gill-spacing">
+                <option value="1">crowded</option>
+                <option value="0">close</option>
+            </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label" >Gill Size</label>
+        <select name="gill-size" id="gill-size">
+            <option value="0">broad</option>
+            <option value="1">narrow</option>
+        </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Gill Color</label>
+            <select name="gill-color" id="gill-color" required>
+                <option value="4">black</option>
+                <option value="5">brown</option>
+                <option value="0">buff</option>
+                <option value="3">chocolate</option>
+                <option value="2">gray</option>
+                <option value="8">green</option>
+                <option value="6">orange</option>
+                <option value="7">pink</option>
+                <option value="9">purple</option>
+                <option value="1">red</option>
+                <option value="10">white</option>
+                <option value="11">yellow</option>
+            </select>
+      </div>
+    </div>
+</div>
+<div class="margin">
+    <div style="display: flex;">
+        <div style="flex:0.3;">
+
+        </div>
+      <div style="flex: 1;">
+        <label class="label">Stalk Shape</label>
+            <select name="stalk-shape" id="stalk-shape" required>
+                <option value="0">enlarging</option>
+                <option value="1">tapering</option>
+            </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Stalk Root</label>
+            <select name="stalk-root" id="stalk-root" required>
+                <option value="1">bulbous</option>
+                <option value="2">club</option>
+                <option value="3">equal</option>
+                <option value="4">rooted</option>
+                <option value="0">missing</option>
+            </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Stalk Surface Above Ring</label>
+            <select name="stalk-surface-above-ring" id="stalk-surface-above-ring" required>
+                <option value="0">fibrous</option>
+                <option value="3">scaly</option>
+                <option value="1">silky</option>
+                <option value="2">smooth</option>
+            </select>
+      </div>
+    </div>
+</div>
+<div class="margin">
+    <div style="display: flex;">
+        <div style="flex:0.3;">
+
+        </div>
+      <div style="flex: 1;">
+        <label class="label">Stalk Surface Below Ring</label>
+            <select name="stalk-surface-below-ring" id="stalk-surface-below-ring" required>
+                <option value="0">fibrous</option>
+                <option value="3">scaly</option>
+                <option value="1">silky</option>
+                <option value="2">smooth</option>
+            </select> 
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Stalk Color Above Ring</label>
+        <select name="stalk-color-above-ring" id="stalk-color-above-ring">
+            <option value="4">brown</option>
+            <option value="0">buff</option>
+            <option value="1">cinnamon</option>
+            <option value="3">gray</option>
+            <option value="5">orange</option>
+            <option value="6">pink</option>
+            <option value="2">red</option>
+            <option value="7">white</option>
+            <option value="8">yellow</option>
+        </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Stalk Color Below Ring</label>
+        <select name="stalk-color-below-ring" id="stalk-color-below-ring">
+            <option value="4">brown</option>
+            <option value="0">buff</option>
+            <option value="1">cinnamon</option>
+            <option value="3">gray</option>
+            <option value="5">orange</option>
+            <option value="6">pink</option>
+            <option value="2">red</option>
+            <option value="7">white</option>
+            <option value="8">yellow</option>
+        </select>
+      </div>
+    </div>
+</div>
+<div class="margin">
+    <div style="display: flex;">
+        <div style="flex:0.3;">
+
+        </div>
+      <div style="flex: 1;">
+        <label class="label">Veil Color</label>
+        <select name="veil-color" id="veil-color" required>
+            <option value="0">brown</option>
+            <option value="1">orange</option>
+            <option value="2">white</option>
+            <option value="3">yellow</option>
+        </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Ring Number</label>
+            <select name="ring-number" id="ring-number" required>
+                <option value="0">none</option>
+                <option value="1">one</option>
+                <option value="2">two</option>
+            </select>
+
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Ring Type</label>
+            <select name="ring-type" id="ring-type" required>
+                <option value="0">evanescent</option>
+                <option value="1">flaring</option>
+                <option value="2">large</option>
+                <option value="4">pendant</option>
+                <option value="3">none</option>
+            </select>
+      </div>
+    </div>
+</div>
+<div class="margin">
+    <div style="display: flex;">
+        <div style="flex:0.3;">
+
+        </div>
+      <div style="flex: 1;">
+        <label class="label">Spore Print Color</label>
+            <select name="spore-print-color" id="spore-print-color">
+                <option value="2">black</option>
+                <option value="3">brown</option>
+                <option value="0">buff</option>
+                <option value="1">chocolate</option>
+                <option value="5">green</option>
+                <option value="4">orange</option>
+                <option value="6">purple</option>
+                <option value="7">white</option>
+                <option value="8">yellow</option>
+            </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Population</label>
+            <select name="population" id="population">
+                <option value="0">abundant</option>
+                <option value="1">clustered</option>
+                <option value="2">numerous</option>
+                <option value="3">scattered</option>
+                <option value="4">several</option>
+                <option value="5">solitary</option>
+            </select>
+      </div>
+      <div style="flex: 1;">
+        <label class="label">Habitat</label>
+            <select name="habitat" id="habitat" required>
+                <option value="1">grasses</option>
+                <option value="2">leaves</option>
+                <option value="3">meadows</option>
+                <option value="4">paths</option>
+                <option value="5">urban</option>
+                <option value="6">waste</option>
+                <option value="0">woods</option>
+            </select>
+      </div>
+    </div>
+</div> 
+<div class="submit">
+    
+    <input type="submit" value="predict"><br>
+            {%if result%}
+            <p>{{result}}</p>
+            {% endif %}
+</div>          
+  </form>
+</body>
+</html>
